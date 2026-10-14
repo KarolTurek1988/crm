@@ -19,5 +19,28 @@ services:
     App\:
         resource: '../src/'
 
+    App\Service\MetaLeadService:
+        arguments:
+            $metaPageAccessToken: '%env(META_PAGE_ACCESS_TOKEN)%'
+            $metaAppSecret: '%env(META_APP_SECRET)%'
+            $metaGraphVersion: '%env(META_GRAPH_VERSION)%'
+
+    App\Controller\MetaWebhookController:
+        arguments:
+            $metaVerifyToken: '%env(META_VERIFY_TOKEN)%'
+            $metaAppSecret: '%env(META_APP_SECRET)%'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+#when@dev:
+#    services:
+#        App\Service\FixtureMetaHttpClient:
+#            arguments:
+#                $fixturePath: '%kernel.project_dir%/fixtures/meta-lead-sample.json'
+#
+#        App\Service\MetaLeadService:
+#            arguments:
+#                $httpClient: '@App\Service\FixtureMetaHttpClient'
+#                $metaPageAccessToken: '%env(META_PAGE_ACCESS_TOKEN)%'
+#                $metaAppSecret: '%env(META_APP_SECRET)%'
+#                $metaGraphVersion: '%env(META_GRAPH_VERSION)%'

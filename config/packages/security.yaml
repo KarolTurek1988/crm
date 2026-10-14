@@ -35,4 +35,5 @@ security:
     access_control:
 
         - { path: ^/login$, roles: PUBLIC_ACCESS }
+        - { path: ^/webhook/meta, roles: PUBLIC_ACCESS }
         - { path: ^/admin, roles: ROLE_ADMIN }
